@@ -799,7 +799,7 @@ class AudioSegment(object):
             return out_f
 
         # for wav output we can just write the data directly to out_f
-        if format == "wav":
+        if format == "wav" and parameters is None:
             data = out_f
         else:
             data = NamedTemporaryFile(mode="wb", delete=False)
@@ -815,7 +815,7 @@ class AudioSegment(object):
         wave_data.close()
 
         # for wav files, we're done (wav data is written directly to out_f)
-        if format == 'wav':
+        if format == 'wav' and parameters is None:
             return out_f
 
         output = NamedTemporaryFile(mode="w+b", delete=False)
